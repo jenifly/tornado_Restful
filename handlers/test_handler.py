@@ -2,7 +2,7 @@ import re
 
 from pymysql.err import InternalError
 
-from handlers.base.api_handler import ApiHandler
+from handlers import ApiHandler
 
 class TestHandler(ApiHandler):
     route = r'/test/?([^/]*)/?'
