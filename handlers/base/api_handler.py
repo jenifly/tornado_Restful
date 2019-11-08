@@ -20,16 +20,16 @@ class ApiHandler(RequestHandler):
     def redis(self):
         return self.application.redis
 
-    def check_xsrf_cookie(self) -> None:
-        token = self.get_cookie('_xsrf', None)
-        if not token:
-            raise HTTPError(403, "'_xsrf' argument missing from POST")
-        _, token, _ = self._decode_xsrf_token(token)
-        _, expected_token, _ = self._get_raw_xsrf_token()
-        if not token:
-            raise HTTPError(403, "'_xsrf' argument has invalid format")
-        if not hmac.compare_digest(utf8(token), utf8(expected_token)):
-            raise HTTPError(403, "XSRF cookie does not match POST argument")
+    # def check_xsrf_cookie(self) -> None:
+    #     token = self.get_cookie('_xsrf', None)
+    #     if not token:
+    #         raise HTTPError(403, "'_xsrf' argument missing from POST")
+    #     _, token, _ = self._decode_xsrf_token(token)
+    #     _, expected_token, _ = self._get_raw_xsrf_token()
+    #     if not token:
+    #         raise HTTPError(403, "'_xsrf' argument has invalid format")
+    #     if not hmac.compare_digest(utf8(token), utf8(expected_token)):
+    #         raise HTTPError(403, "XSRF cookie does not match POST argument")
 
     async def prepare(self) -> None:
         if not hasattr(self, 'seesion'):

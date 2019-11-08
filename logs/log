@@ -1,0 +1,303 @@
+[E 191108 13:13:29 tcpserver:330] Error in connection callback
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\tcpserver.py", line 324, in _handle_connection
+        future = self.handle_stream(stream, address)
+      File "g:\Code\Python\tornadojy\tornado\httpserver.py", line 229, in handle_stream
+        conn.start_serving(self)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 804, in start_serving
+        fut = gen.convert_yielded(self._server_request_loop(delegate))
+    AttributeError: module 'tornado.gen' has no attribute 'convert_yielded'
+[E 191108 13:14:18 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:14:18 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:14:23 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:14:53 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:15:53 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:20:53 http1connection:829] Uncaught exception
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 190, in _read_message
+        header_data = await gen.with_timeout(
+    AttributeError: module 'tornado.gen' has no attribute 'with_timeout'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 817, in _server_request_loop
+        ret = await conn.read_response(request_delegate)
+      File "g:\Code\Python\tornadojy\tornado\http1connection.py", line 195, in _read_message
+        except gen.TimeoutError:
+    AttributeError: module 'tornado.gen' has no attribute 'TimeoutError'
+[E 191108 13:58:06 web:1536] Uncaught exception GET /test (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+[E 191108 13:58:06 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:58:06 web:1941] 500 GET /test (127.0.0.1) 5.99ms
+[E 191108 13:58:09 web:1536] Uncaught exception GET /test (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+[E 191108 13:58:09 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:58:09 web:1941] 500 GET /test (127.0.0.1) 2.99ms
+[E 191108 13:58:39 web:1536] Uncaught exception GET /test (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+[E 191108 13:58:39 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:58:39 web:1941] 500 GET /test (127.0.0.1) 2.99ms
+[E 191108 13:58:42 web:1536] Uncaught exception GET /test/ (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test/', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+[E 191108 13:58:42 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '2385340393456884118'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:58:42 web:1941] 500 GET /test/ (127.0.0.1) 2.99ms
+[E 191108 13:59:11 web:1536] Uncaught exception GET /test (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '-6748884751347578526'
+[E 191108 13:59:11 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '-6748884751347578526'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:59:11 web:1941] 500 GET /test (127.0.0.1) 3.99ms
+[E 191108 13:59:42 web:1536] Uncaught exception GET /test/ (127.0.0.1)
+    HTTPServerRequest(protocol='http', host='127.0.0.1:5266', method='GET', uri='/test/', version='HTTP/1.1', remote_ip='127.0.0.1')
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '4244237060353490242'
+[E 191108 13:59:42 web:994] Uncaught exception in write_error
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1447, in _execute
+        result = await result
+      File "g:\Code\Python\tornadojy\handlers\test_handler.py", line 19, in get
+        self.write(data={'res': await self.mysql.queryall('SELECT * FROM _article', cache=True)})
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 31, in queryall
+        return await self._query(sql, cursorclass, cache)
+      File "g:\Code\Python\tornadojy\utils\mysql.py", line 45, in _query
+        setattr(cache, _hash, tmp)
+    AttributeError: 'bool' object has no attribute '4244237060353490242'
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 992, in send_error
+        self.write_error(status_code, **kwargs)
+      File "g:\Code\Python\tornadojy\tornado\web.py", line 1014, in write_error
+        self.write(line)
+      File "g:\Code\Python\tornadojy\handlers\base\api_handler.py", line 56, in write
+        data = {'status': status, 'msg': RESPONSE_STATUS_MAP[status]}
+    KeyError: 'Traceback (most recent call last):\n'
+[E 191108 13:59:42 web:1941] 500 GET /test/ (127.0.0.1) 3.99ms
