@@ -1,10 +1,9 @@
-import asyncio
-
 import aioredis
 import aiomysql
 
 import tornado.web
 import tornado.options
+
 from functools import partial
 from typing import (Any, List, Type, Dict, Awaitable)
 
@@ -13,6 +12,7 @@ from tornado.options import define, options
 from tornado.web import Application
 
 try:
+    import asyncio
     import uvloop
 
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
@@ -28,7 +28,8 @@ define('port', type=int, default=5266)
 
 
 class RestfulApp(Application):
-    def __init__(self,
+    def __init__(
+        self,
         default_host: str = None,
         transforms: List[Type['OutputTransform']] = None,
         db_pool: Dict[str, Awaitable] = None,
@@ -57,5 +58,8 @@ async def main() -> None:
 
 
 if __name__ == '__main__':
+    # io_loop = IOLoop.current()
+    # io_loop.add_callback(main)
+    # io_loop.start()
     asyncio.ensure_future(main())
     asyncio.get_event_loop().run_forever()
