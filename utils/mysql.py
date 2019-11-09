@@ -1,11 +1,11 @@
 import logging
 import re
 
-from typing import Type, Union, Dict, List, Any
+from typing import Type, Union, Dict, List, Any, Tuple
 
-from aiomysql import DictCursor
+from aiomysql import Cursor, DictCursor
 
-from utils.cache import cache
+from utils.cache import cache as _cache
 
 class Mysql:
     def __init__(
@@ -33,43 +33,68 @@ class Mysql:
     async def _query(
         self,
         sql: str = None,
-        cursorclass: Type['Cursor'] = DictCursor,
+        cursorclass: Type['Cursor'] = Cursor,
         cache: bool = False,
         single: bool = False
     ) -> Any:
         if cache:
             _hash = str(hash(sql))
-            if not hasattr(cache, _hash):
-                cur = await self.execute(sql, cursorclass, False)
+            if not hasattr(_cache, _hash):
+                cur = await self.execute(sql, cursorclass)
                 tmp = await cur.fetchone() if single else await cur.fetchall()
-                setattr(cache, _hash, tmp)
-            return getattr(cache, _hash)
+                setattr(_cache, _hash, tmp)
+            return getattr(_cache, _hash)
         else:
-            cur = await self.execute(sql, cursorclass, False)
+            cur = await self.execute(sql, cursorclass)
             return await cur.fetchone() if single else await cur.fetchall()
+
+    async def insert(
+        self,
+        table: str = None,
+        column: str = None,
+        value: Union[str, Tuple] = None
+    ) -> Any:
+        if isinstance(value, tuple):
+            value = '),('.join(value)
+        cur = await self.execute(f'INSERT INTO {table} ({column}) VALUES ({value})')
+        return cur.lastrowid, cur.rowcount
+
+    async def update(
+        self,
+        sql: str = None,
+    ) -> Any:
+        cur = await self.execute(sql)
+        return cur.rowcount
+
+    async def delete(
+        self,
+        sql: str = None,
+    ) -> Any:
+        cur = await self.execute(sql)
+        return cur.rowcount
 
     async def execute(
         self,
         sql: str = None,
-        cursorclass: Type['Cursor'] = DictCursor,
-        commit: bool = True
-    ) -> Type['Cursor']:
-        commit = 'SELECT' == sql[:6].upper()
-        return await self._execute(sql, cursorclass, commit)
-
-    async def _execute(
-        self,
-        sql: str = None,
-        cursorclass: Type['Cursor'] = DictCursor,
-        commit: bool = True
+        cursorclass: Type['Cursor'] = Cursor,
     ) -> Type['Cursor']:
         async with self._mysql_pool.acquire() as conn:
             async with conn.cursor(cursorclass) as cur:
-                try:
-                    await cur.execute(sql)
-                    return cur
-                except Exception as e:
-                    raise e
-                finally:
-                    if commit:
-                        await conn.commit()
+                await cur.execute(sql)
+                return cur
+
+    async def transaction(
+        self,
+        sqls: Tuple = None,
+    ) -> None:
+        async with self._mysql_pool.acquire() as conn:
+            await conn.begin()
+            try:
+                async with conn.cursor() as cur:
+                    for sql in sqls:
+                        await cur.execute(sql)
+            except Exception as e:
+                await conn.rollback()
+                raise e
+            else:
+                await conn.commit()

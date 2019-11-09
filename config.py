@@ -14,7 +14,8 @@ mysql_options = dict(
     db='blog',
     user='root',
     password='root',
-    charset="utf8"
+    charset="utf8",
+    autocommit=True
 )
 
 # redis

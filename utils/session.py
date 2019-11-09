@@ -16,7 +16,7 @@ class Session(object):
         if not self._token:
             self.data = None
         else:
-            self._token = '{}{}'.format(SESSION_PREFIX, self._token.decode())
+            self._token = f'{SESSION_PREFIX}{self._token.decode()}'
             try:
                 json_data = await self._handler.redis.get(self._token)
             except Exception as e:
@@ -33,7 +33,7 @@ class Session(object):
         data: Dict = None
     ) -> None:
         self.data = data
-        _token = encryption('{}{}'.format(self.data['username'], SEESION_HASH_KEY))
+        _token = encryption(f'{self.data["username"]}{SEESION_HASH_KEY}')
         self._token = '{}{}'.format(SESSION_PREFIX, _token)
         serialize_data = orjson.dumps(data)
         try:
@@ -43,11 +43,6 @@ class Session(object):
             logging.error(e)
             raise e
 
-    async def clear(self) -> bool:
-        try:
-            await self._handler.redis.delete(self._token)
-            self._handler.clear_cookie('_token')
-            return True
-        except Exception as e:
-            logging.error(e)
-            raise e
+    async def clear(self) -> None:
+        await self._handler.redis.delete(self._token)
+        self._handler.clear_cookie('_token')

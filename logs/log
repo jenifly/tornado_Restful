@@ -1,0 +1,8 @@
+[E 191109 15:19:22 base_events:1608] Task exception was never retrieved
+    future: <Task finished coro=<main() done, defined at g:/Code/Python/tornadojy/server.py:48> exception=AttributeError("'mappingproxy' object has no attribute 'update'")>
+    Traceback (most recent call last):
+      File "g:/Code/Python/tornadojy/server.py", line 56, in main
+        app = RestfulApp(db_pool=db_pool, **settings)
+      File "g:/Code/Python/tornadojy/server.py", line 39, in __init__
+        ApiHandler.__dict__.update(db_pool)
+    AttributeError: 'mappingproxy' object has no attribute 'update'

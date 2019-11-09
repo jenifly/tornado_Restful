@@ -35,8 +35,9 @@ class RestfulApp(Application):
         db_pool: Dict[str, Awaitable] = None,
         **settings: Any
     ) -> None:
-        if db_pool is not None:
-            self.__dict__.update(db_pool)
+        if isinstance(db_pool, dict):
+            for name, pool in db_pool.items():
+                setattr(ApiHandler, name, pool)
         _handlers = []
         for handler in ApiHandler.__subclasses__():
             if hasattr(handler, 'route'):

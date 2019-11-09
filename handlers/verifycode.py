@@ -12,7 +12,7 @@ from config import IMG_CODE_EXPIRES_SECONDS
 from utils.captcha.captcha import captcha
 
 class ImageCodeHandler(ApiHandler):
-    route = r'/imgcode/?'
+    route = r'/api/imgcode'
 
     async def get(self):
         pre_code_id = self.get_argument('pre', None)

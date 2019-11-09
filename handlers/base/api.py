@@ -11,15 +11,6 @@ from utils.session import Session
 from utils.response_code import RESPONSE_STATUS_MAP
 
 class ApiHandler(RequestHandler):
-
-    @property
-    def mysql(self):
-        return self.application.mysql
-
-    @property
-    def redis(self):
-        return self.application.redis
-
     def check_xsrf_cookie(self) -> None:
         token = self.get_cookie('_xsrf', None)
         if not token:
@@ -34,12 +25,15 @@ class ApiHandler(RequestHandler):
     async def prepare(self) -> None:
         if not hasattr(self, 'seesion'):
             self.session = await Session(self).initialize()
-        del self._headers['server']
+        # del self._headers['server']
         if self.request.headers.get('Content-Type', '').startswith('application/json'):
             if self.request.body:
                 self.json_args = orjson.loads(self.request.body.decode())
         else:
             self.json_args = {}
+
+    def get_current_user(self):
+        return self.session.data if hasattr(self, 'session') else None
 
     def write(
         self,
@@ -48,6 +42,8 @@ class ApiHandler(RequestHandler):
     ) -> None:
         if self._finished:
             raise RuntimeError("Cannot write() after finish()")
+        if isinstance(status, dict) or status not in RESPONSE_STATUS_MAP.keys():
+            data, status = status, 4000
         if data:
             if not isinstance(data, dict):
                 data = {'msg': data}
