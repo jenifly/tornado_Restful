@@ -10,16 +10,16 @@ settings = dict(
 
 # mysql
 mysql_options = dict(
-    host='jenifly.xyz',
+    host='localhost',
     db='blog',
-    user='jenifly',
-    password='0926.',
+    user='root',
+    password='root',
     charset="utf8"
 )
 
 # redis
 redis_options = dict(
-    address=('jenifly.xyz', 6379)
+    address=('localhost', 6379)
 )
 
 # path
