@@ -32,9 +32,6 @@ class Bezier:
         return result
 
     def make_bezier(self, n):
-        ''' Bezier curves:
-            http://en.wikipedia.org/wiki/B%C3%A9zier_curve#Generalization
-        '''
         try:
             return self.beziers[n]
         except KeyError:

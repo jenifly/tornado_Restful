@@ -10,6 +10,7 @@ from tornado.escape import utf8
 from utils.session import Session
 from utils.response_code import RESPONSE_STATUS_MAP
 
+
 class ApiHandler(RequestHandler):
     def check_xsrf_cookie(self) -> None:
         token = self.get_cookie('_xsrf', None)

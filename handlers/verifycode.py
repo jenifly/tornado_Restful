@@ -11,6 +11,7 @@ from tornado.util import unicode_type
 from config import IMG_CODE_EXPIRES_SECONDS
 from utils.captcha.captcha import captcha
 
+
 class ImageCodeHandler(ApiHandler):
     route = r'/api/imgcode'
 
@@ -22,8 +23,8 @@ class ImageCodeHandler(ApiHandler):
         text, pic = captcha.generate_captcha()
         try:
             if pre_code_id:
-                await self.redis.delete('img_code_%s' % pre_code_id)
-            await self.redis.setex('img_code_%s' % cur_code_id, IMG_CODE_EXPIRES_SECONDS, text)
+                await self.redis.delete(f'img_code_{pre_code_id}')
+            await self.redis.setex(f'img_code_{cur_code_id}', IMG_CODE_EXPIRES_SECONDS, text)
         except Exception as e:
             logging.error(e)
             self.write(4006)
@@ -35,8 +36,8 @@ class ImageCodeHandler(ApiHandler):
         if not code or not code_id:
             return self.write(4004)
         try:
-            real_img_code = await self.redis.get('pic_code_%s' % code_id)
-            await self.redis.delete('pic_code_%s' % code_id)
+            real_img_code = await self.redis.get(f'pic_code_{code_id}')
+            await self.redis.delete(f'pic_code_{code_id}')
         except Exception as e:
             logging.error(e)
             return self.write(4001)

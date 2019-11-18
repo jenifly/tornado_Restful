@@ -10,7 +10,7 @@
     - 在`handlers`文件夹下的`__init__.py`文件中导入继承的类
 
     即可完成路由解析
-    #### example:
+    ### example:
     ```python
     from handlers import ApiHandler
 
@@ -18,9 +18,9 @@
         route = r'/test/?([^/]*)/?'
 
         async def get(self, name):
-            self.write('this is a test!, name: {}'.format(name))
+            self.write(f'this is a test!{f" name: {name}" if name else ""}')
     ```
-    `__init__.py`:
+    ### `__init__.py`:
     ```python
     from .test_handler import TestHandler
     ```

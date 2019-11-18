@@ -8,9 +8,10 @@ class TestHandler(ApiHandler):
     route = r'/api/test/?([^/]*)/?'
 
     async def get(self, name):
+        print(name == '')
         if name:
             try:
-                data = await self.mysql.queryone('SELECT * FROM article WHERE id={}'.format(name))
+                data = await self.mysql.queryone(f'SELECT * FROM article WHERE id={name}')
                 self.write({'res': data})
             except InternalError as e:
                 e = re.search(r"'(.*)' ", e.__str__())
