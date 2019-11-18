@@ -1,5 +1,5 @@
 # 一个基于tornado的Restful微服务基础框架
-### 环境要求：python 3.5+， tornado 6.x
+### 环境要求：python 3.6+， tornado 6.x
 1. 集成异步mysql连接池`aiomysql`、异步redis连接池`aioredis`、异步文件流库`aiofiles`，采用`uvloop`加速`asyncio`事件循环，充分发挥tornado异步特性
 1. 集成基于异步`redis`连接池的`session`
 1. 集成验证码：`http://localhost:xxxx/imgcode?cur=xxxxxxxxxxxxxxxxxxxx&pre=xxxxxxxxxxxxxxxxxxxxx`
